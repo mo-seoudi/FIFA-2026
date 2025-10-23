@@ -175,18 +175,7 @@ export default function Fifa() {
 
       <EventPopup match={selected} onClose={() => setSelected(null)} />
 
-      {/* Optional legend */}
-      {view === 'calendar' && (
-        <div className="muted" style={{ marginTop: 8 }}>
-          <strong>Legend:</strong>{' '}
-          {Object.entries(CITY_COLORS).map(([c, color]) => (
-            <span key={c} style={{ display: 'inline-flex', alignItems: 'center', marginRight: 12 }}>
-              <span style={{ width: 10, height: 10, borderRadius: 999, background: color, display: 'inline-block', marginRight: 6 }} />
-              {c}
-            </span>
-          ))}
-        </div>
-      )}
+
 
       <footer className="muted" style={{ marginTop: 28 }}>
         Static JSON data. Calendar cells show <strong>city only</strong>; click for details.
