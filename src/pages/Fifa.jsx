@@ -57,7 +57,7 @@ export default function Fifa() {
       const [y, mo] = m.date.split('-').map(Number)
       return y === ym.year && (mo - 1) === ym.month
     })
-  }), [filtered, ym])
+  }, [filtered, ym])
 
   const monthName = (y, m) => new Date(y, m, 1).toLocaleString(undefined, { month: 'long', year: 'numeric' })
   const navMonth = (delta) => {
