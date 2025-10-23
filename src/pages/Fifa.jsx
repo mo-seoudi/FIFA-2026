@@ -1,3 +1,4 @@
+// src/pages/Fifa.jsx
 import React, { useMemo, useState } from 'react'
 import Section from '../components/Section.jsx'
 import MonthCalendar from '../components/MonthCalendar.jsx'
@@ -6,6 +7,15 @@ import schedule from '../data/schedule.json'
 
 const CITIES = Array.from(new Set(schedule.map(r => r.city))).sort()
 const PHASES = ['All', ...Array.from(new Set(schedule.map(r => r.phase))).sort()]
+
+// City highlight colors
+const CITY_COLORS = {
+  'New York New Jersey': '#16a34a', // green
+  'Boston': '#34d399',              // lighter green
+  'Philadelphia': '#34d399',        // lighter green
+  'Los Angeles': '#f59e0b',         // yellow
+  'Houston': '#2563eb'              // blue
+}
 
 export default function Fifa() {
   // filters + view state
@@ -67,7 +77,7 @@ export default function Fifa() {
       </header>
 
       {/* Filters */}
-      <div className="grid" style={{ gridTemplateColumns: '2fr 1fr 1fr 1fr' }}>
+      <div className="grid filters-grid" style={{ gridTemplateColumns: '2fr 1fr 1fr 1fr' }}>
         <div>
           <label className="sub" style={{ display: 'block' }}>City</label>
           <select value={city} onChange={e => setCity(e.target.value)}>
@@ -152,11 +162,29 @@ export default function Fifa() {
             </div>
           }
         >
-          <MonthCalendar items={calItemsInMonth} onSelect={setSelected} ym={ym} />
+          <MonthCalendar
+            items={calItemsInMonth}
+            onSelect={setSelected}
+            ym={ym}
+            highlightColors={CITY_COLORS}
+          />
         </Section>
       )}
 
       <EventPopup match={selected} onClose={() => setSelected(null)} />
+
+      {/* Optional legend */}
+      {view === 'calendar' && (
+        <div className="muted" style={{ marginTop: 8 }}>
+          <strong>Legend:</strong>{' '}
+          {Object.entries(CITY_COLORS).map(([c, color]) => (
+            <span key={c} style={{ display: 'inline-flex', alignItems: 'center', marginRight: 12 }}>
+              <span style={{ width: 10, height: 10, borderRadius: 999, background: color, display: 'inline-block', marginRight: 6 }} />
+              {c}
+            </span>
+          ))}
+        </div>
+      )}
 
       <footer className="muted" style={{ marginTop: 28 }}>
         Static JSON data. Calendar cells show <strong>city only</strong>; click for details.
