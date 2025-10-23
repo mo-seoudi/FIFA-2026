@@ -75,7 +75,6 @@ export default function MonthCalendar({ items, onSelect, ym, highlightColors = {
           <div key={idx} className={`day ${c.inCurrent ? '' : 'out'}`}>
             <div className="hdr">
               <span style={{ fontWeight: 600 }}>{c.date.getDate()}</span>
-              {c.dayItems.length > 0 && <span className="pill">{c.dayItems.length}</span>}
             </div>
 
             <div style={{ display: 'grid', gap: 6 }}>
