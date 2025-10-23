@@ -1,9 +1,3 @@
-
----
-
-## `package.json`
-
-```json
 {
   "name": "fifa-2026-schedule",
   "version": "1.0.0",
