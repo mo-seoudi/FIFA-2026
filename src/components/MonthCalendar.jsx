@@ -35,7 +35,7 @@ export default function MonthCalendar({ items, onSelect, ym, highlightColors = {
   const weekLabels = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
 
   // -------- helpers --------
-  const colorForCity = (city) => highlightColors[city] || '#111'
+  const colorForCity = (city) => highlightColors[city] || '#374151'
 
   const textColorForBg = (bg) => {
     // crude luminance check for hex or rgb/rgba strings
