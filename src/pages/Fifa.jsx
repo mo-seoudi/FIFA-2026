@@ -52,9 +52,11 @@ export default function Fifa() {
     return Array.from(map.entries()).sort((a, b) => a[0].localeCompare(b[0]))
   }, [filtered])
 
-  const calItemsInMonth = useMemo(() => filtered.filter(m => {
-    const d = new Date(m.date)
-    return d.getFullYear() === ym.year && d.getMonth() === ym.month
+  const calItemsInMonth = useMemo(() => {
+    return filtered.filter(m => {
+      const [y, mo] = m.date.split('-').map(Number)
+      return y === ym.year && (mo - 1) === ym.month
+    })
   }), [filtered, ym])
 
   const monthName = (y, m) => new Date(y, m, 1).toLocaleString(undefined, { month: 'long', year: 'numeric' })
